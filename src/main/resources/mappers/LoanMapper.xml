@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.library.mapper.LoanMapper">
+
+    <resultMap id="loanMap" type="com.library.entity.Loan">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="bookId" column="book_id"/>
+        <result property="loanDate" column="loan_date"/>
+        <result property="returnDate" column="return_date"/>
+    </resultMap>
+
+    <resultMap id="LoanDto" type="com.library.dto.LoanDto">
+        <id property="id" column="loan_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="bookId" column="book_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="userEmail" column="user_email"/>
+        <result property="bookTitle" column="book_title"/>
+        <result property="bookAuthor" column="book_author"/>
+        <result property="loanDate" column="loan_date"/>
+        <result property="returnDate" column="return_date"/>
+    </resultMap>
+
+    <select id="getAll" resultMap="LoanDto">
+        SELECT
+        l.id AS loan_id,
+        l.user_id,
+        l.book_id,
+        u.username AS user_name,
+        u.email AS user_email,
+        b.title AS book_title,
+        b.author AS book_author,
+        l.loan_date,
+        l.return_date
+        FROM loans l
+        JOIN users u ON l.user_id = u.id
+        JOIN books b ON l.book_id = b.id
+        ORDER BY l.loan_date DESC
+    </select>
+
+    <select id="getById" resultMap="LoanDto">
+        SELECT
+        l.id AS loan_id,
+        l.user_id,
+        l.book_id,
+        u.username AS user_name,
+        u.email AS user_email,
+        b.title AS book_title,
+        b.author AS book_author,
+        l.loan_date,
+        l.return_date
+        FROM loans l
+        JOIN users u ON l.user_id = u.id
+        JOIN books b ON l.book_id = b.id
+        WHERE l.id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.library.entity.Loan" useGeneratedKeys="true" keyProperty="id">
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">
+            SELECT loans_seq.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO loans (id, user_id, book_id, loan_date, return_date)
+        VALUES (#{id}, #{userId}, #{bookId}, #{loanDate, jdbcType=DATE}, #{returnDate, jdbcType=DATE})
+    </insert>
+
+    <update id="update" parameterType="com.library.entity.Loan">
+        UPDATE loans
+        SET user_id=#{userId}, book_id=#{bookId}, loan_date=#{loanDate}, return_date=#{returnDate}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM loans WHERE id=#{id}
+    </delete>
+
+</mapper>

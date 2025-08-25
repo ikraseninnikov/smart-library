@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <span class="spacer"></span>
+  <a mat-button routerLink="/books">Books</a>
+  <a mat-button routerLink="/users">Users</a>
+  <a mat-button routerLink="/loans">Loans</a>
+</mat-toolbar>
+
+<h2>Users list</h2>
+<ul>
+  <li *ngFor="let user of users">
+    {{ user.name }} — {{ user.email }}
+    <button *ngIf="user.id !== undefined" (click)="deleteUser(user.id)">Delete</button>
+  </li>
+</ul>
+
+<p *ngIf="errorMessage" style="color: red">{{ errorMessage }}</p>

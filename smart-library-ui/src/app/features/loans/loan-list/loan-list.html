@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <span class="spacer"></span>
+  <a mat-button routerLink="/books">Books</a>
+  <a mat-button routerLink="/users">Users</a>
+  <a mat-button routerLink="/loans">Loans</a>
+</mat-toolbar>
+
+<h2>Loans list</h2>
+
+<ul>
+  <li *ngFor="let loan of loans">
+    <strong>{{ loan.userName }}</strong> borrowed
+    <em>"{{ loan.bookTitle }}"</em>
+    from {{ loan.loanDate }} to {{ loan.returnDate }}
+    <button *ngIf="loan.id" (click)="deleteLoan(loan.id)">Delete</button>
+  </li>
+</ul>
+
+<p *ngIf="errorMessage" style="color: red">{{ errorMessage }}</p>

@@ -1,0 +1,27 @@
+// Сначала подключаем Angular Material
+@use '@angular/material' as mat;
+
+// Настройка темы для Angular Material
+html {
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+body {
+  // Цветовая схема по умолчанию
+  color-scheme: light;
+
+  // Фон и цвета текста
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Сбрасываем margin браузера
+  margin: 0;
+}

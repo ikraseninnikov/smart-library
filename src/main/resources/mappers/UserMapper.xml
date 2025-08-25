@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.library.mapper.UserMapper">
+
+    <resultMap id="userMap" type="com.library.entity.User">
+        <id property="id" column="id"/>
+        <result property="name" column="username"/>
+        <result property="email" column="email"/>
+        <result property="passwordHash" column="password_hash"/>
+        <result property="createdAt" column="created_at"/>
+    </resultMap>
+
+    <select id="getAll" resultMap="userMap">
+        SELECT * FROM users
+    </select>
+
+    <select id="getById" parameterType="long" resultMap="userMap">
+        SELECT * FROM users WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.library.entity.User" useGeneratedKeys="true" keyProperty="id">
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">
+            SELECT users_seq.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO users (id, username, email, password_hash)
+        VALUES (#{id}, #{name}, #{email}, #{passwordHash})
+    </insert>
+
+    <update id="update" parameterType="com.library.entity.User">
+        UPDATE users
+        SET username = #{name}, email = #{email}, password_hash = #{passwordHash}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM users WHERE id = #{id}
+    </delete>
+
+</mapper>
