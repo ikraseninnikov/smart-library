@@ -17,6 +17,10 @@ public class BookService {
         return bookMapper.getById(id)
                 .orElseThrow(() -> new NotFoundException("Book with id " + id + " not found"));
     }
+    public Book findByIsbn(String isbn) {
+        return bookMapper.findByIsbn(isbn)
+                .orElseThrow(() -> new NotFoundException("Book with isbn " + isbn + " not found"));
+    }
     public void create(Book book) { bookMapper.insert(book); }
     public void update(Book book) { bookMapper.update(book); }
     public void delete(Long id) { bookMapper.delete(id); }

@@ -6,14 +6,16 @@ public class Book {
     private Long id;
     private String title;
     private String author;
+    private String isbn;
     private boolean isAvailable;
 
     public Book(){};
 
-    public Book(Long id, String title, String author, boolean isAvailable) {
+    public Book(Long id, String title, String author, String isbn, boolean isAvailable) {
         this.id = id;
         this.title = title;
         this.author = author;
+        this.isbn = isbn;
         this.isAvailable = isAvailable;
     }
 
@@ -41,6 +43,14 @@ public class Book {
         this.author = author;
     }
 
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
     public boolean isAvailable() {
         return isAvailable;
     }
@@ -56,12 +66,13 @@ public class Book {
         return isAvailable == book.isAvailable &&
                 Objects.equals(id, book.id) &&
                 Objects.equals(title, book.title) &&
-                Objects.equals(author, book.author);
+                Objects.equals(author, book.author) &&
+                Objects.equals(isbn, book.isbn);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, author, isAvailable);
+        return Objects.hash(id, title, author, isbn, isAvailable);
     }
 
     @Override
@@ -70,6 +81,7 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
+                ", isbn='" + isbn + '\'' +
                 ", isAvailable=" + isAvailable +
                 '}';
     }

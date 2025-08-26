@@ -61,53 +61,53 @@ BEGIN
     user_ids.EXTEND;
     user_ids(user_ids.COUNT) := v_user_id;
 
-    INSERT INTO books (id, title, author, is_available)
-    VALUES (books_seq.NEXTVAL, 'Clean Code', 'Robert Martin', 1)
+    INSERT INTO books (id, title, author, isbn, is_available)
+    VALUES (books_seq.NEXTVAL, 'Clean Code', 'Robert Martin', SYS_GUID(), 1)
     RETURNING id INTO v_book_id;
     book_ids.EXTEND;
     book_ids(book_ids.COUNT) := v_book_id;
-    INSERT INTO books (id, title, author, is_available)
-    VALUES (books_seq.NEXTVAL, 'Effective Java', 'Joshua Bloch', 1)
+    INSERT INTO books (id, title, author, isbn, is_available)
+    VALUES (books_seq.NEXTVAL, 'Effective Java', 'Joshua Bloch', SYS_GUID(), 1)
     RETURNING id INTO v_book_id;
     book_ids.EXTEND;
     book_ids(book_ids.COUNT) := v_book_id;
-    INSERT INTO books (id, title, author, is_available)
-    VALUES (books_seq.NEXTVAL, 'Design Patterns', 'Erich Gamma', 1)
+    INSERT INTO books (id, title, author, isbn, is_available)
+    VALUES (books_seq.NEXTVAL, 'Design Patterns', 'Erich Gamma', SYS_GUID(), 1)
     RETURNING id INTO v_book_id;
     book_ids.EXTEND;
     book_ids(book_ids.COUNT) := v_book_id;
-    INSERT INTO books (id, title, author, is_available)
-    VALUES (books_seq.NEXTVAL, 'Refactoring', 'Martin Fowler', 1)
+    INSERT INTO books (id, title, author, isbn, is_available)
+    VALUES (books_seq.NEXTVAL, 'Refactoring', 'Martin Fowler', SYS_GUID(), 1)
     RETURNING id INTO v_book_id;
     book_ids.EXTEND;
     book_ids(book_ids.COUNT) := v_book_id;
-    INSERT INTO books (id, title, author, is_available)
-    VALUES (books_seq.NEXTVAL, 'Domain-Driven Design', 'Eric Evans', 1)
+    INSERT INTO books (id, title, author, isbn, is_available)
+    VALUES (books_seq.NEXTVAL, 'Domain-Driven Design', 'Eric Evans', SYS_GUID(), 1)
     RETURNING id INTO v_book_id;
     book_ids.EXTEND;
     book_ids(book_ids.COUNT) := v_book_id;
-    INSERT INTO books (id, title, author, is_available)
-    VALUES (books_seq.NEXTVAL, 'Spring in Action', 'Craig Walls', 1)
+    INSERT INTO books (id, title, author, isbn, is_available)
+    VALUES (books_seq.NEXTVAL, 'Spring in Action', 'Craig Walls', SYS_GUID(), 1)
     RETURNING id INTO v_book_id;
     book_ids.EXTEND;
     book_ids(book_ids.COUNT) := v_book_id;
-    INSERT INTO books (id, title, author, is_available)
-    VALUES (books_seq.NEXTVAL, 'Java Concurrency in Practice', 'Brian Goetz', 1)
+    INSERT INTO books (id, title, author, isbn, is_available)
+    VALUES (books_seq.NEXTVAL, 'Java Concurrency in Practice', 'Brian Goetz', SYS_GUID(), 1)
     RETURNING id INTO v_book_id;
     book_ids.EXTEND;
     book_ids(book_ids.COUNT) := v_book_id;
-    INSERT INTO books (id, title, author, is_available)
-    VALUES (books_seq.NEXTVAL, 'Head First Java', 'Kathy Sierra', 1)
+    INSERT INTO books (id, title, author, isbn, is_available)
+    VALUES (books_seq.NEXTVAL, 'Head First Java', 'Kathy Sierra', SYS_GUID(), 1)
     RETURNING id INTO v_book_id;
     book_ids.EXTEND;
     book_ids(book_ids.COUNT) := v_book_id;
-    INSERT INTO books (id, title, author, is_available)
-    VALUES (books_seq.NEXTVAL, 'The Pragmatic Programmer', 'Andrew Hunt', 1)
+    INSERT INTO books (id, title, author, isbn, is_available)
+    VALUES (books_seq.NEXTVAL, 'The Pragmatic Programmer', 'Andrew Hunt', SYS_GUID(), 1)
     RETURNING id INTO v_book_id;
     book_ids.EXTEND;
     book_ids(book_ids.COUNT) := v_book_id;
-    INSERT INTO books (id, title, author, is_available)
-    VALUES (books_seq.NEXTVAL, 'Microservices Patterns', 'Chris Richardson', 1)
+    INSERT INTO books (id, title, author, isbn, is_available)
+    VALUES (books_seq.NEXTVAL, 'Microservices Patterns', 'Chris Richardson', SYS_GUID(), 1)
     RETURNING id INTO v_book_id;
     book_ids.EXTEND;
     book_ids(book_ids.COUNT) := v_book_id;

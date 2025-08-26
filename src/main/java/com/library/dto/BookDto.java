@@ -6,14 +6,16 @@ public class BookDto {
     private Long id;
     private String title;
     private String author;
+    private String isbn;
     private boolean available;
 
     public BookDto() {}
 
-    public BookDto(Long id, String title, String author, boolean available) {
+    public BookDto(Long id, String title, String author, String isbn, boolean available) {
         this.id = id;
         this.title = title;
         this.author = author;
+        this.isbn = isbn;
         this.available = available;
     }
 
@@ -25,6 +27,14 @@ public class BookDto {
 
     public String getAuthor() { return author; }
     public void setAuthor(String author) { this.author = author; }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
     public boolean isAvailable() { return available; }
     public void setAvailable(boolean available) { this.available = available; }

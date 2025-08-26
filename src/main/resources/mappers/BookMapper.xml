@@ -9,6 +9,7 @@
         <id property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="author" column="author"/>
+        <result property="isbn" column="isbn"/>
         <result property="isAvailable" column="is_available"/>
     </resultMap>
 
@@ -20,17 +21,21 @@
         SELECT * FROM books WHERE id = #{id}
     </select>
 
+    <select id="findByIsbn" parameterType="string" resultMap="bookMap">
+        SELECT * FROM books WHERE isbn = #{isbn}
+    </select>
+
     <insert id="insert" parameterType="com.library.entity.Book" useGeneratedKeys="true" keyProperty="id">
         <selectKey keyProperty="id" resultType="long" order="BEFORE">
             SELECT books_seq.NEXTVAL FROM dual
         </selectKey>
-        INSERT INTO books (id, title, author, is_available)
-        VALUES (#{id}, #{title}, #{author}, #{isAvailable})
+        INSERT INTO books (id, title, author, isbn, is_available)
+        VALUES (#{id}, #{title}, #{author}, #{isbn,jdbcType=VARCHAR}, #{isAvailable})
     </insert>
 
     <update id="update" parameterType="com.library.entity.Book">
         UPDATE books
-        SET title=#{title}, author=#{author}, is_available=#{isAvailable}
+        SET title=#{title}, author=#{author}, isbn = #{isbn}, is_available=#{isAvailable}
         WHERE id=#{id}
     </update>
 

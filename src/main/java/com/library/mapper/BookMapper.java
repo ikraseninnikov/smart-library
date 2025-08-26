@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface BookMapper {
     List<Book> getAll();
     Optional<Book> getById(Long id);
+    Optional<Book> findByIsbn(String isbn);
     void insert(Book book);
     void update(Book book);
     void delete(Long id);

@@ -32,6 +32,12 @@ public class BookController {
         return BookMapperDTO.toDTO(book);
     }
 
+    @GetMapping("/isbn/{isbn}")
+    public BookDto getByIsbn(@PathVariable String isbn) {
+        Book book = bookService.findByIsbn(isbn);
+        return BookMapperDTO.toDTO(book);
+    }
+
     @PostMapping
     public BookDto create(@RequestBody BookDto bookDTO) {
         Book book = BookMapperDTO.toEntity(bookDTO);

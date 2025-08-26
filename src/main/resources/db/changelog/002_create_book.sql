@@ -5,6 +5,7 @@ CREATE TABLE books (
     id NUMBER(19) PRIMARY KEY,
     title VARCHAR2(200) NOT NULL,
     author VARCHAR2(150) NOT NULL,
+    isbn VARCHAR2(50) UNIQUE NOT NULL,
     is_available NUMBER(1) DEFAULT 1 NOT NULL
 );
 
@@ -13,6 +14,7 @@ COMMENT ON TABLE books IS 'Table for storing books';
 COMMENT ON COLUMN books.id IS 'Primary key';
 COMMENT ON COLUMN books.title IS 'Book title';
 COMMENT ON COLUMN books.author IS 'Book author';
+COMMENT ON COLUMN books.isbn IS 'ISBN of the book, must be unique';
 COMMENT ON COLUMN books.is_available IS 'Availability flag: 1 - available, 0 - not available';
 
 

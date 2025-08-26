@@ -29,7 +29,7 @@ class BookControllerIT {
 
     @Test
     void testCreateAndGetBook() throws Exception {
-        BookDto book = new BookDto(null, "Test Title", "Test Author", true);
+        BookDto book = new BookDto(null, "Test Title", "Test Author", "isbn", true);
 
         String response = mockMvc.perform(post("/api/books")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -50,8 +50,8 @@ class BookControllerIT {
 
     @Test
     void testGetAllBooks() throws Exception {
-        BookDto b1 = new BookDto(null, "Book1", "Author1", true);
-        BookDto b2 = new BookDto(null, "Book2", "Author2", true);
+        BookDto b1 = new BookDto(null, "Book1", "Author1", "isbn1", true);
+        BookDto b2 = new BookDto(null, "Book2", "Author2", "isbn2", true);
 
         String resp1 = mockMvc.perform(post("/api/books")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -73,7 +73,7 @@ class BookControllerIT {
 
     @Test
     void testUpdateBook() throws Exception {
-        BookDto book = new BookDto(null, "Old Title", "Old Author", true);
+        BookDto book = new BookDto(null, "Old Title", "Old Author", "isbn", true);
 
         String resp = mockMvc.perform(post("/api/books")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -97,7 +97,7 @@ class BookControllerIT {
 
     @Test
     void testDeleteBook() throws Exception {
-        BookDto book = new BookDto(null, "ToDelete", "Author", true);
+        BookDto book = new BookDto(null, "ToDelete", "Author", "isbn", true);
 
         String resp = mockMvc.perform(post("/api/books")
                         .contentType(MediaType.APPLICATION_JSON)

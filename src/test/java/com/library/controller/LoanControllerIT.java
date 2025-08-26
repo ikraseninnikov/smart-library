@@ -57,7 +57,7 @@ class LoanControllerIT {
         userId2 = objectMapper.readTree(userResp2).get("id").asLong();
 
         // book creation
-        BookDto book = new BookDto(null, "Test Title", "Test Author", true);
+        BookDto book = new BookDto(null, "Test Title", "Test Author", "isbn1", true);
         String bookResp = mockMvc.perform(post("/api/books")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(book)))
@@ -65,7 +65,7 @@ class LoanControllerIT {
                 .andReturn().getResponse().getContentAsString();
         bookId = objectMapper.readTree(bookResp).get("id").asLong();
 
-        BookDto book2 = new BookDto(null, "Test Title", "Test Author", true);
+        BookDto book2 = new BookDto(null, "Test Title", "Test Author", "isbn2", true);
         String bookResp2 = mockMvc.perform(post("/api/books")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(book2)))
