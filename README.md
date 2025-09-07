@@ -41,7 +41,7 @@ It provides REST APIs for book and user management, a modern web UI, and integra
 Navigate to frontend folder:
 - cd frontend
 - npm install
-- ng serve
+- ng serve --proxy-config proxy.conf.json
 
 ### Planned Improvements
 
@@ -54,3 +54,8 @@ Navigate to frontend folder:
 - API enhancements: filtering, pagination, sorting
 - Frontend features: improved table views, search, and inline editing
 - API Documentation Swagger
+
+
+This project is for educational purposes and demonstrates a full-stack Java + Angular workflow.
+
+The current version provides a basic skeleton, ready for feature extensions and microservice architecture.

@@ -1,16 +1,63 @@
 <mat-toolbar color="primary">
+  <span>📚 Smart Library</span>
   <span class="spacer"></span>
   <a mat-button routerLink="/books">Books</a>
   <a mat-button routerLink="/users">Users</a>
   <a mat-button routerLink="/loans">Loans</a>
 </mat-toolbar>
 
-<h2>Books list</h2>
-<ul>
-  <li *ngFor="let book of books">
-    {{ book.title }} — {{ book.author }}
-    <button *ngIf="book.id !== undefined" (click)="deleteBook(book.id)">Delete</button>
-  </li>
-</ul>
+<div class="books-container">
+  <h2>Books List</h2>
 
-<p *ngIf="errorMessage" style="color: red">{{ errorMessage }}</p>
+  <mat-form-field appearance="outline">
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search by title or author">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let book">{{ book.title }}</td>
+    </ng-container>
+
+    <!-- Author Column -->
+    <ng-container matColumnDef="author">
+      <th mat-header-cell *matHeaderCellDef>Author</th>
+      <td mat-cell *matCellDef="let book">{{ book.author }}</td>
+    </ng-container>
+
+    <!-- ISBN Column -->
+    <ng-container matColumnDef="isbn">
+      <th mat-header-cell *matHeaderCellDef>ISBN</th>
+      <td mat-cell *matCellDef="let book">{{ book.isbn }}</td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let book">
+        <span [ngClass]="book.isAvailable ? 'available' : 'unavailable'">
+          {{ book.isAvailable ? 'Available' : 'Unavailable' }}
+        </span>
+      </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let book">
+        <button mat-raised-button class="green-button" (click)="editBook(book)">Edit</button>
+        <button mat-raised-button class="red-button" (click)="deleteBook(book.id)">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+  <p *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</p>
+</div>
