@@ -68,7 +68,7 @@ export class BookListComponent implements OnInit {
       next: (data) => {
         this.books = data;
         this.dataSource = new MatTableDataSource(this.books);
-        this.cd.detectChanges(); // для обновления view
+        this.cd.detectChanges();
       },
       error: (err) => {
         console.error('Error when loading books', err);
@@ -83,20 +83,18 @@ export class BookListComponent implements OnInit {
   }
 
   editBook(book: Book): void {
-    if (!book.id) {
-      console.error('Cannot edit book without ID');
-      return;
-    }
-
     this.router.navigate(['/books', 'edit', book.id]).catch((err: any) => {
       console.error('Error routing edit book', err);
     });
   }
 
   deleteBook(id: number): void {
+    console.log('Book delete with id=' + id);
     this.bookService.deleteBook(id).subscribe({
       next: () => {
         this.books = this.books.filter(book => book.id !== id);
+        this.dataSource.data = this.books;
+        this.cd.detectChanges();
       },
       error: (err: any) => console.error('Error on book delete', err)
     });
