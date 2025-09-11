@@ -27,3 +27,21 @@ button:hover {
 .spacer {
   flex: 1 1 auto;
 }
+
+.green-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.green-button:hover {
+  background-color: #45A049;
+}
+
+.red-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.red-button:hover {
+  background-color: #d32f2f;
+}
