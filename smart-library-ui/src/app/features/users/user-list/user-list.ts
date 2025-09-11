@@ -68,6 +68,7 @@ export class UserListComponent implements OnInit {
     this.userService.getUsers().subscribe({
       next: (data) => {
         this.users = data;
+        console.log(data);
         this.dataSource = new MatTableDataSource(this.users);
         this.cd.detectChanges();
       },
