@@ -89,15 +89,4 @@ export class UserListComponent implements OnInit {
       console.error('Error routing edit user', err);
     });
   }
-
-  deleteUser(id: number): void {
-    this.userService.deleteUser(id).subscribe({
-      next: () => {
-        this.users = this.users.filter(user => user.id !== id);
-        this.dataSource.data = this.users;
-        this.cd.detectChanges();
-      },
-      error: (err: any) => console.error('Error on user delete', err)
-    });
-  }
 }
