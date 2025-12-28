@@ -11,6 +11,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -34,7 +37,7 @@ class UserControllerIT {
 
     @Test
     void testCreateAndGetUser() throws Exception {
-        UserDto user = new UserDto(null, "Ivan", uniqueEmail("ivan"), "12345");
+        UserDto user = new UserDto(null, "Ivan", uniqueEmail("ivan"), LocalDateTime.now());
 
         // creation
         String response = mockMvc.perform(post("/api/users")
@@ -58,8 +61,8 @@ class UserControllerIT {
 
     @Test
     void testGetAllUsers() throws Exception {
-        UserDto u1 = new UserDto(null, "Alice", uniqueEmail("alice"), "pass1");
-        UserDto u2 = new UserDto(null, "Bob", uniqueEmail("bob"), "pass2");
+        UserDto u1 = new UserDto(null, "Alice", uniqueEmail("alice"), LocalDateTime.now());
+        UserDto u2 = new UserDto(null, "Bob", uniqueEmail("bob"), LocalDateTime.now());
 
         String resp1 = mockMvc.perform(post("/api/users")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -81,7 +84,7 @@ class UserControllerIT {
 
     @Test
     void testUpdateUser() throws Exception {
-        UserDto user = new UserDto(null, "OldName", uniqueEmail("old"), "oldPass");
+        UserDto user = new UserDto(null, "OldName", uniqueEmail("old"), LocalDateTime.now());
 
         String resp = mockMvc.perform(post("/api/users")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -92,7 +95,6 @@ class UserControllerIT {
 
 
         createdUser.setName("NewName");
-        createdUser.setPassword("oldPass");
         createdUser.setEmail(uniqueEmail("new"));
 
         mockMvc.perform(put("/api/users/{id}", createdUser.getId())
@@ -106,7 +108,7 @@ class UserControllerIT {
 
     @Test
     void testDeleteUser() throws Exception {
-        UserDto user = new UserDto(null, "DeleteMe", uniqueEmail("delete"), "xxx");
+        UserDto user = new UserDto(null, "DeleteMe", uniqueEmail("delete"), LocalDateTime.now());
 
         String resp = mockMvc.perform(post("/api/users")
                         .contentType(MediaType.APPLICATION_JSON)

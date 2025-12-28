@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -40,7 +41,7 @@ class LoanControllerIT {
     @BeforeEach
     void setupTestData() throws Exception {
         // user creation
-        UserDto user = new UserDto(null, "Ivan", "ivan", "12345");
+        UserDto user = new UserDto(null, "Ivan", "ivan", LocalDateTime.now());
         String userResp = mockMvc.perform(post("/api/users")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(user)))
@@ -48,7 +49,7 @@ class LoanControllerIT {
                 .andReturn().getResponse().getContentAsString();
         userId = objectMapper.readTree(userResp).get("id").asLong();
 
-        UserDto user2 = new UserDto(null, "Maria", "maria", "12345");
+        UserDto user2 = new UserDto(null, "Maria", "maria", LocalDateTime.now());
         String userResp2 = mockMvc.perform(post("/api/users")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(user2)))

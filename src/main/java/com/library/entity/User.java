@@ -52,7 +52,7 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
-    public LocalDateTime  getCreated_at() {
+    public LocalDateTime  getCreatedAt() {
         return createdAt;
     }
 
